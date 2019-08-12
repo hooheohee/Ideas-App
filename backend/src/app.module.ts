@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { IdeaModule } from './idea/idea.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
       entities: [__dirname + '/**/*.entity.{ts,js}'],
     }),
     IdeaModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [

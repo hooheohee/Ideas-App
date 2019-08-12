@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { IdeaDTO } from './idea.dto';
 
-@Controller('idea')
+@Controller('api/ideas')
 export class IdeaController {
   private logger = new Logger();
 
