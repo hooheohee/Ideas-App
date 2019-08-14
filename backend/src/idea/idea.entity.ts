@@ -7,8 +7,10 @@ import {
   UpdateDateColumn,
   ManyToMany,
   JoinTable,
+  OneToMany,
 } from 'typeorm';
 import { User } from '../user/user.entity';
+import { Comment } from '../comment/comment.entity';
 
 @Entity()
 export class Idea {
@@ -37,4 +39,7 @@ export class Idea {
   @ManyToMany(type => User, { cascade: true })
   @JoinTable()
   downvotes: User[];
+
+  @OneToMany(type => Comment, comment => comment.idea, { cascade: true })
+  comments: Comment[];
 }

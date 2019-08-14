@@ -32,7 +32,7 @@ export class IdeaService {
 
   async showAll() {
     const ideas = await this.ideaRepository.find({
-      relations: ['author', 'upvotes', 'downvotes'],
+      relations: ['author', 'upvotes', 'downvotes', 'comments'],
     });
     return ideas.map(idea => this.toResponseObject(idea));
   }
@@ -47,7 +47,7 @@ export class IdeaService {
   async read(id: string) {
     const idea = await this.ideaRepository.findOne({
       where: { id },
-      relations: ['author', 'upvotes', 'downvotes'],
+      relations: ['author', 'upvotes', 'downvotes', 'comments'],
     });
     if (!idea) {
       throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
@@ -67,7 +67,7 @@ export class IdeaService {
     await this.ideaRepository.update(id, data);
     idea = await this.ideaRepository.findOne({
       where: { id },
-      relations: ['author'],
+      relations: ['author', 'comments'],
     });
     return this.toResponseObject(idea);
   }
@@ -75,7 +75,7 @@ export class IdeaService {
   async destroy(id: string, userid: string) {
     const idea = await this.ideaRepository.findOne({
       where: { id },
-      relations: ['author'],
+      relations: ['author', 'comments'],
     });
     if (!idea) {
       throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
@@ -105,7 +105,7 @@ export class IdeaService {
   async upvote(id: string, userid: string) {
     let idea = await this.ideaRepository.findOne({
       where: { id },
-      relations: ['author', 'upvotes', 'downvotes'],
+      relations: ['author', 'upvotes', 'downvotes', 'comments'],
     });
     const user = await this.userRepository.findOne(userid);
     idea = await this.vote(idea, user, Votes.UP);
@@ -115,7 +115,7 @@ export class IdeaService {
   async downvote(id: string, userid: string) {
     let idea = await this.ideaRepository.findOne({
       where: { id },
-      relations: ['author', 'upvotes', 'downvotes'],
+      relations: ['author', 'upvotes', 'downvotes', 'comments'],
     });
     const user = await this.userRepository.findOne(userid);
     idea = await this.vote(idea, user, Votes.DOWN);
