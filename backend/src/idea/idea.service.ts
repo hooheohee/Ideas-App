@@ -30,9 +30,12 @@ export class IdeaService {
     }
   }
 
-  async showAll() {
+  async showAll(page: number = 1, newest?: boolean) {
     const ideas = await this.ideaRepository.find({
       relations: ['author', 'upvotes', 'downvotes', 'comments'],
+      take: 10,
+      skip: 10 * (page - 1),
+      order: newest && { created: 'DESC' },
     });
     return ideas.map(idea => this.toResponseObject(idea));
   }

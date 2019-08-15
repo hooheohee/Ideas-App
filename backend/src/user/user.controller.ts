@@ -8,6 +8,7 @@ import {
   UsePipes,
   UseGuards,
   HttpCode,
+  Query,
 } from '@nestjs/common';
 import { UserDTO } from './user.dto';
 
@@ -16,8 +17,8 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get('api/users')
-  showAllUsers() {
-    return this.userService.showAll();
+  showAllUsers(@Query('page') page: number) {
+    return this.userService.showAll(page);
   }
 
   @HttpCode(200)
