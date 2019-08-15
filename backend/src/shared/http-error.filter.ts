@@ -16,15 +16,15 @@ export class HttpErrorFilter implements ExceptionFilter {
     const errorResponse = {
       code: status,
       timestamp: new Date().toLocaleDateString(),
-      path: request.url,
-      method: request.method,
+      path: request ? request.url : '',
+      method: request ? request.method : '',
       message: exception.message.error || exception.message || null,
     };
     Logger.error(
-      `${request.method} ${request.url}`,
+      request ? `${request.method} ${request.url}` : '',
       JSON.stringify(errorResponse),
       'ExceptionFilter',
     );
-    response.status(status).json(errorResponse);
+    response.status ? response.status(status).json(errorResponse) : null;
   }
 }

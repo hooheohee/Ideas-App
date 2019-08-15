@@ -39,6 +39,7 @@ import { CommentModule } from './comment/comment.module';
     ),
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
+      context: ({ req }) => ({ headers: req.headers }),
     }),
     IdeaModule,
     UserModule,
