@@ -15,11 +15,10 @@ export class CommentService {
   ) {}
 
   private toResponseObject(comment: Comment) {
-    const responseObj: any = comment;
-    if (comment.author) {
-      responseObj.author = comment.author.toResponseObject();
-    }
-    return responseObj;
+    return {
+      ...comment,
+      author: comment.author && comment.author.toResponseObject(),
+    };
   }
 
   async showByIdea(id: string, page: number = 1) {
@@ -67,13 +66,16 @@ export class CommentService {
       where: { id },
       relations: ['author', 'idea'],
     });
+    if (!comment) {
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+    }
     if (comment.author.id !== userid) {
       throw new HttpException(
         'You do not own this comment',
         HttpStatus.UNAUTHORIZED,
       );
     }
-    await this.commentRepository.delete(comment);
-    return 'Comment deleted!';
+    await this.commentRepository.delete(id);
+    return 'Successfully deleted!';
   }
 }

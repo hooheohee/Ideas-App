@@ -1,4 +1,5 @@
 import { Idea } from './../idea/idea.entity';
+import { Comment } from './../comment/comment.entity';
 import { UserRO } from './user.dto';
 import {
   Entity,

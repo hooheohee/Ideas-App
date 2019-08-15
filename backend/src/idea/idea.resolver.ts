@@ -8,7 +8,7 @@ import {
 import { IdeaService } from './idea.service';
 import { CommentService } from '../comment/comment.service';
 
-@Resolver()
+@Resolver('Idea')
 export class IdeaResolver {
   constructor(
     private ideaService: IdeaService,
@@ -16,13 +16,13 @@ export class IdeaResolver {
   ) {}
 
   @Query()
-  ideas(@Args('page') page: number, @Args('newest') newest: boolean) {
-    return this.ideaService.showAll(page, newest);
+  async ideas(@Args('page') page: number, @Args('newest') newest: boolean) {
+    return await this.ideaService.showAll(page, newest);
   }
 
   @ResolveProperty()
-  comments(@Parent() idea) {
+  async comments(@Parent() idea) {
     const { id } = idea;
-    return this.commentsService.showByIdea(id);
+    return await this.commentsService.showByIdea(id);
   }
 }

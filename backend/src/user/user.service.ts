@@ -18,6 +18,7 @@ export class UserService {
     });
     return users.map(user => user.toResponseObject(false));
   }
+
   async read(username: string) {
     const user = await this.userRepository.findOne({
       where: { username },

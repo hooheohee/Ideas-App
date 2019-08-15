@@ -85,7 +85,7 @@ export class IdeaService {
     }
     this.ensureOwnership(idea, userid);
     await this.ideaRepository.delete(id);
-    return 'Successfully deleted.';
+    return 'Successfully deleted!';
   }
 
   private async vote(idea: Idea, user: User, vote: Votes) {
