@@ -9,8 +9,11 @@ import {
   UseGuards,
   HttpCode,
   Query,
+  Param,
 } from '@nestjs/common';
 import { UserDTO } from './user.dto';
+import { AuthGuard } from '../shared/auth.guard';
+import { User } from './user.decorator';
 
 @Controller()
 export class UserController {
@@ -19,6 +22,17 @@ export class UserController {
   @Get('api/users')
   showAllUsers(@Query('page') page: number) {
     return this.userService.showAll(page);
+  }
+
+  @Get('api/users/:username')
+  showOneUser(@Param('username') username: string) {
+    return this.userService.read(username);
+  }
+
+  @Get('auth/whoami')
+  @UseGuards(new AuthGuard())
+  showMe(@User('username') username: string) {
+    return this.userService.read(username);
   }
 
   @HttpCode(200)
