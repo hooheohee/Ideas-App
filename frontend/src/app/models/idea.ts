@@ -9,6 +9,7 @@ export interface Idea {
   author: User;
   upvotes?: number;
   downvotes?: number;
+  comments?: Comment[];
 }
 
 export interface IdeaDTO {

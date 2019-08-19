@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment.prod";
+import { environment } from "@env/environment";
 import { AuthService } from "./auth.service";
-import { IdeaDTO } from "../models/idea";
+import { IdeaDTO } from "@app/models/idea";
 
 @Injectable({
   providedIn: "root"
 })
 export class ApiService {
-  private api: string = environment.api_server + "api";
+  private api: string = environment.api_server + "/api";
 
   constructor(private httpClient: HttpClient, private auth: AuthService) {}
 

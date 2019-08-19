@@ -3,9 +3,9 @@ import { CommonModule } from "@angular/common";
 import { StoreModule, ActionReducerMap } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
-import { errorReducer, ErrorState } from "./reducers/errors.reducer";
-import { authReducer, AuthState } from "./reducers/auth.reducer";
-import { AuthEffects } from "./effects/auth.effects";
+import { errorReducer, ErrorState } from "@app/store/reducers/errors.reducer";
+import { authReducer, AuthState } from "@app/store/reducers/auth.reducer";
+import { AuthEffects } from "@app/store/effects/auth.effects";
 import {
   RouterReducerState,
   routerReducer,
