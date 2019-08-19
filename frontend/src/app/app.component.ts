@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppState } from "./store/app-store.module";
-import { AddError } from "./store/actions/errors.action";
+import { SetInitialUser } from "./store/actions/auth.action";
 
 @Component({
   selector: "app-root",
@@ -11,9 +11,9 @@ import { AddError } from "./store/actions/errors.action";
 export class AppComponent {
   title = "ideas-app-frontend";
 
-  // constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) {}
 
-  // ngOnInit() {
-  //   this.store.dispatch(new AddError({ error: "message!" }));
-  // }
+  ngOnInit() {
+    this.store.dispatch(new SetInitialUser());
+  }
 }

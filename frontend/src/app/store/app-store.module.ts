@@ -4,14 +4,20 @@ import { StoreModule, ActionReducerMap } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule } from "@ngrx/effects";
 import { errorReducer, ErrorState } from "./reducers/errors.reducer";
+import { authReducer, AuthState } from "./reducers/auth.reducer";
+import { AuthEffects } from "./effects/auth.effects";
 
 export interface AppState {
   error: ErrorState;
+  auth: AuthState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  error: errorReducer
+  error: errorReducer,
+  auth: authReducer
 };
+
+export const effects = [AuthEffects];
 
 @NgModule({
   declarations: [],
@@ -19,7 +25,7 @@ export const reducers: ActionReducerMap<AppState> = {
     CommonModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot(effects)
   ]
 })
 export class AppStoreModule {}
