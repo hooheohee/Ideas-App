@@ -48,4 +48,9 @@ export class AuthService {
       localStorage.clear();
     }
   }
+
+  canActivate() {
+    if (this.token) return true;
+    return false;
+  }
 }

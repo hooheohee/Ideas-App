@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-
 import { AppState } from "@app/store/app-store.module";
 import { LoginUser, RegisterUser } from "@app/store/actions/auth.action";
 import { AuthType } from "@app/models/auth";

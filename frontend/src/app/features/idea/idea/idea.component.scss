@@ -13,7 +13,6 @@ p-card {
       margin-left: 1rem;
     }
   }
-
   &-votes {
     display: flex;
     flex-direction: column;
@@ -23,17 +22,14 @@ p-card {
       font-size: 1.5rem;
     }
   }
-
   &-options {
     button {
       margin-left: 1rem;
     }
   }
-
   &-description {
     margin-bottom: 0.5rem;
   }
-
   &-footer {
     display: flex;
     justify-content: space-between;
