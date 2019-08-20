@@ -1,48 +1,48 @@
-<p-card>
-  <div class="AuthForm">
-    <form [formGroup]="authForm" (ngSubmit)="login()">
-      <div class="AuthForm-form">
+<div class="AuthCard">
+  <p-card>
+    <form *ngIf="!loading" [formGroup]="authForm" (ngSubmit)="auth('login')">
+      <div class="AuthCard-form">
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon">
-            <i class="fa fa-user"> </i>
-          </span>
+          <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
           <input
-            pInputText
             type="text"
-            placeholder="username"
             formControlName="username"
+            pInputText
+            placeholder="username"
           />
         </div>
 
         <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon">
-            <i class="fa fa-key"> </i>
-          </span>
+          <span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
           <input
-            pInputText
             type="password"
-            placeholder="password"
             formControlName="password"
+            pInputText
+            placeholder="password"
           />
         </div>
       </div>
-      <div class="AuthForm-buttons">
+
+      <div class="AuthCard-buttons">
         <button
-          pButton
           class="ui-button-info"
           type="button"
-          label="register"
-          [disabled]="authForm.invalid"
-          (click)="register()"
-        ></button>
-
-        <button
           pButton
+          label="Register"
+          [disabled]="authForm.invalid"
+          (click)="auth('register')"
+        ></button>
+        <button
           type="submit"
-          label="login"
+          pButton
+          label="Login"
           [disabled]="authForm.invalid"
         ></button>
       </div>
     </form>
-  </div>
-</p-card>
+
+    <div class="AuthCard-loader">
+      <p-progressSpinner *ngIf="loading"></p-progressSpinner>
+    </div>
+  </p-card>
+</div>

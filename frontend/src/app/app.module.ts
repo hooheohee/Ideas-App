@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from "@app/app-routing.module";
@@ -12,6 +12,7 @@ import { AppStoreModule } from "@app/store/app-store.module";
 import { AuthComponent } from "@app/components/auth/auth.component";
 import { UIModule } from "@app/ui.module";
 import { NavbarComponent } from "@app/components/navbar/navbar.component";
+import { UUIDGuard } from "@app/services/uuid.guard";
 
 @NgModule({
   declarations: [AppComponent, AuthComponent, NavbarComponent],
@@ -21,11 +22,10 @@ import { NavbarComponent } from "@app/components/navbar/navbar.component";
     HttpClientModule,
     AppStoreModule,
     UIModule,
-    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService, ApiService],
+  providers: [AuthService, ApiService, UUIDGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

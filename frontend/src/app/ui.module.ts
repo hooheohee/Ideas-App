@@ -1,28 +1,40 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { MessageService } from "primeng/api";
 import { CardModule } from "primeng/card";
-import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from "primeng/button";
-import { ToastModule } from "primeng/toast";
-import { MessageService } from "primeng/components/common/messageservice";
+import { InputTextModule } from "primeng/inputtext";
+import { InputTextareaModule } from "primeng/inputtextarea";
 import { MenubarModule } from "primeng/menubar";
+import { ProgressSpinnerModule } from "primeng/progressspinner";
+import { ToastModule } from "primeng/toast";
+import { IdeaComponent } from "./features/idea/idea/idea.component";
+import { IdeaEditableComponent } from "./features/idea/idea-editable/idea-editable.component";
 
 @NgModule({
-  declarations: [],
+  declarations: [IdeaComponent, IdeaEditableComponent],
   imports: [
     CommonModule,
+    ButtonModule,
     CardModule,
     InputTextModule,
-    ButtonModule,
-    ToastModule,
-    MenubarModule
+    InputTextareaModule,
+    MenubarModule,
+    ProgressSpinnerModule,
+    ReactiveFormsModule,
+    ToastModule
   ],
   exports: [
-    CardModule,
-    InputTextModule,
     ButtonModule,
-    ToastModule,
-    MenubarModule
+    CardModule,
+    IdeaComponent,
+    IdeaEditableComponent,
+    InputTextModule,
+    InputTextareaModule,
+    MenubarModule,
+    ProgressSpinnerModule,
+    ToastModule
   ],
   providers: [MessageService]
 })

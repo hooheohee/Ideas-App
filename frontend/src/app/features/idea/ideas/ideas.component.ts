@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
-
 import { Idea } from "@app/models/idea";
 import { User } from "@app/models/user";
 import { AppState } from "../state";
 import { LoadIdeas, UpvoteIdea, DownvoteIdea } from "../state/idea.action";
-import { selectAllIdeas } from "../state/idea.selector";
+import { selectAllIdeas, selectIdeaLoader } from "../state/idea.selector";
 
 @Component({
   selector: "app-ideas",
@@ -24,7 +23,7 @@ export class IdeasComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.store.dispatch(new LoadIdeas());
     this.ideas = this.store.select(selectAllIdeas);
-    // this.loader = this.store.select(selectIdeaLoader);
+    this.loader = this.store.select(selectIdeaLoader);
     this.auth$ = this.store
       .select(state => state.auth.user)
       .subscribe(val => (this.currentUser = val));
