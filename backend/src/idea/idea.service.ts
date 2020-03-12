@@ -90,11 +90,12 @@ export class IdeaService {
 
   private async vote(idea: Idea, user: User, vote: Votes) {
     const opposite = vote === Votes.UP ? Votes.DOWN : Votes.UP;
-    if (
-      idea[opposite].filter(voter => voter.id === user.id).length > 0 ||
-      idea[vote].filter(voter => voter.id === user.id).length > 0
-    ) {
+    if (idea[vote].filter(voter => voter.id === user.id).length > 0) {
+      return idea;
+    }
+    if (idea[opposite].filter(voter => voter.id === user.id).length > 0) {
       idea[opposite] = idea[opposite].filter(voter => voter.id !== user.id);
+      idea[vote] = idea[vote].filter(voter => voter.id !== user.id);
       await this.ideaRepository.save(idea);
     } else if (idea[vote].filter(voter => voter.id === user.id).length < 1) {
       idea[vote].push(user);
