@@ -21,9 +21,7 @@ import { CommentModule } from './comment/comment.module';
       //   password: 'cCC9QylT9kO6Afmgcg0Ie_xEnEedM4WE',
       //   database: 'dczzpyzf',
       //   synchronize: true,
-      //   dropSchema: true,
       //   entities: [__dirname + '/**/*.entity.{ts,js}'],
-      //   ssl: true,
       // },
       {
         type: 'postgres',
@@ -31,7 +29,9 @@ import { CommentModule } from './comment/comment.module';
         port: 5432,
         database: 'YueZheng',
         synchronize: true,
+        // dropSchema: false,
         entities: [__dirname + '/**/*.entity.{ts,js}'],
+        // ssl: true,
       },
     ),
     GraphQLModule.forRoot({
